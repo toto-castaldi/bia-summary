@@ -12,17 +12,16 @@ Il cliente riceve un riassunto chiaro e leggibile della propria composizione cor
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ CLI accetta un file PDF BIA come input e produce un riassunto markdown — Phase 1
+- ✓ Il PDF BIA viene inviato intero a Claude API (multimodale) per estrarre e riassumere i dati — Phase 1
+- ✓ Il prompt per Claude è configurabile tramite un file di testo esterno — Phase 1
+- ✓ Il tool gestisce dati anagrafici del cliente (nome, età, sesso, peso, altezza, data esame) — Phase 1
+- ✓ Il tool gestisce i dati di composizione corporea (massa grassa/magra in kg e %, BMR, TDEE) — Phase 1
 
 ### Active
 
-- [ ] CLI accetta un file PDF BIA come input e produce un PDF riassuntivo
-- [ ] Il PDF BIA viene inviato intero a Claude API (multimodale) per estrarre e riassumere i dati
-- [ ] Il prompt per Claude è configurabile tramite un file di testo esterno
 - [ ] L'output di Claude (markdown) viene convertito in PDF tramite CloudConvert API
 - [ ] Il PDF generato è semplice e pulito: testo ben formattato, titoli, tabelle
-- [ ] Il tool gestisce dati anagrafici del cliente (nome, età, sesso, peso, altezza, data esame)
-- [ ] Il tool gestisce i dati di composizione corporea (massa grassa/magra in kg e %, BMR, TDEE)
 
 ### Out of Scope
 
@@ -75,4 +74,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-26 after initialization*
+*Last updated: 2026-03-26 after Phase 1 completion*
