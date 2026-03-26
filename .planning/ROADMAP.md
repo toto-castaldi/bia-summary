@@ -28,11 +28,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The markdown output contains a goal table with sex-specific thresholds ("in forma" / "ottima definizione") and nutritional guidance, and excludes BMI and hydration data
   4. The prompt is loaded from an external text file (default: `./prompt.txt`) and can be changed without modifying code
   5. Tool exits with code 0 on success and non-zero on failure; missing API keys cause a clear startup error
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md -- Scaffold project, install deps, TypeScript 6.0 config, shared types, env/prompt validation
+- [ ] 01-02-PLAN.md -- Claude API client (PDF document block) and pipeline orchestrator with response validation
+- [ ] 01-03-PLAN.md -- CLI entry point (commander), end-to-end dry-run verification with sample PDF
 
 ### Phase 2: PDF Output Pipeline
 **Goal**: User receives a clean, client-ready PDF generated from the Claude markdown output via CloudConvert
@@ -69,6 +70,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Analysis Pipeline | 0/2 | Not started | - |
+| 1. Core Analysis Pipeline | 0/3 | Not started | - |
 | 2. PDF Output Pipeline | 0/1 | Not started | - |
 | 3. Robustness and Polish | 0/1 | Not started | - |
