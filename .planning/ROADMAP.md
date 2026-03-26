@@ -44,10 +44,11 @@ Plans:
   2. Output PDF filename is auto-generated as `YYYY_MM_DD - [Client Name] - Riassunto BIA.pdf` from data extracted by Claude
   3. User can override the output path with `--output` / `-o` flag
   4. The generated PDF is clean and readable: well-formatted text, visible table borders, clear section headings
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 02-01: TBD
+- [ ] 02-01-PLAN.md -- Install CloudConvert SDK, extend types with outputPath, create filename parser and CloudConvert API client
+- [ ] 02-02-PLAN.md -- Wire PDF conversion into pipeline (dryRun branch), add --output/-o flag to CLI, end-to-end verification
 
 ### Phase 3: Robustness and Polish
 **Goal**: Tool handles real-world conditions gracefully -- API failures retry automatically, verbose mode aids debugging, and prompts support per-client customization
@@ -71,5 +72,5 @@ Phases execute in numeric order: 1 -> 2 -> 3
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Core Analysis Pipeline | 3/3 | Complete | 2026-03-26 |
-| 2. PDF Output Pipeline | 0/1 | Not started | - |
+| 2. PDF Output Pipeline | 0/2 | Not started | - |
 | 3. Robustness and Polish | 0/1 | Not started | - |
