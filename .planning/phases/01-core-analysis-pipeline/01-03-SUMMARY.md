@@ -64,6 +64,8 @@ Each task was committed atomically:
 1. **Task 1: Create CLI entry point with commander and wire to pipeline** - `9a216e1` (feat)
 2. **Task 2: Verify end-to-end dry-run with sample BIA PDF** - human-verify checkpoint (approved, no code changes)
 
+**Plan metadata:** `c7bfc1d` (docs: complete plan)
+
 ## Files Created/Modified
 - `src/cli.ts` - CLI entry point: Commander 14 setup with `<pdf-file>` positional arg, `--dry-run` flag, env validation, file existence check, pipeline execution, markdown to stdout, metadata to stderr, exit code 1 on any error
 
