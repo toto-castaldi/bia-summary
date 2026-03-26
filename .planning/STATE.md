@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-26T18:31:06.501Z"
+status: executing
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-26T21:13:01.964Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 3
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
+  total_plans: 5
+  completed_plans: 4
   percent: 0
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-26)
 
 **Core value:** Il cliente riceve un riassunto chiaro e leggibile della propria composizione corporea, senza dover interpretare il report tecnico originale.
-**Current focus:** Phase 01 — core-analysis-pipeline
+**Current focus:** Phase 02 — pdf-output-pipeline
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 02 (pdf-output-pipeline) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-03-26
 
 Progress: [░░░░░░░░░░] 0%
@@ -55,6 +55,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P01 | 3min | 2 tasks | 6 files |
 | Phase 01 P02 | 2min | 2 tasks | 2 files |
 | Phase 01 P03 | 2min | 2 tasks | 1 files |
+| Phase 02 P01 | 4min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 01]: Math validation is best-effort with silent skip on parse failure; pipeline validates FM+FFM vs weight and TBW vs ECW+ICW
 - [Phase 01]: CLI validates env before file existence check for fail-fast on missing API keys
 - [Phase 01]: dry-run flag is forward-compatible: Phase 1 outputs to stdout, Phase 2 will branch for PDF generation
+- [Phase 02]: Used import/raw for inline markdown embedding in CloudConvert jobs (no stream handling)
+- [Phase 02]: Filename resolution: input filename parse (primary) -> markdown extraction (fallback) -> generic date (last resort) per D-02
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T18:31:06.489Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-pdf-output-pipeline/02-CONTEXT.md
+Last session: 2026-03-26T21:13:01.955Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None

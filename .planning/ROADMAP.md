@@ -47,7 +47,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Install CloudConvert SDK, extend types with outputPath, create filename parser and CloudConvert API client
+- [x] 02-01-PLAN.md -- Install CloudConvert SDK, extend types with outputPath, create filename parser and CloudConvert API client
 - [ ] 02-02-PLAN.md -- Wire PDF conversion into pipeline (dryRun branch), add --output/-o flag to CLI, end-to-end verification
 
 ### Phase 3: Robustness and Polish
