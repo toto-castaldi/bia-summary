@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-03-26T21:13:01.964Z"
+status: verifying
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-03-26T21:27:13.228Z"
 last_activity: 2026-03-26
 progress:
   total_phases: 3
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 5
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-03-26)
 
 Phase: 02 (pdf-output-pipeline) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-03-26
 
 Progress: [░░░░░░░░░░] 0%
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P02 | 2min | 2 tasks | 2 files |
 | Phase 01 P03 | 2min | 2 tasks | 1 files |
 | Phase 02 P01 | 4min | 2 tasks | 5 files |
+| Phase 02 P02 | 3min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,7 @@ Recent decisions affecting current work:
 - [Phase 01]: dry-run flag is forward-compatible: Phase 1 outputs to stdout, Phase 2 will branch for PDF generation
 - [Phase 02]: Used import/raw for inline markdown embedding in CloudConvert jobs (no stream handling)
 - [Phase 02]: Filename resolution: input filename parse (primary) -> markdown extraction (fallback) -> generic date (last resort) per D-02
+- [Phase 02]: Pipeline function takes config: AppConfig as second param; metadata to stderr, markdown to stdout only in dry-run; .md fallback on CloudConvert failure (D-07)
 
 ### Pending Todos
 
@@ -86,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T21:13:01.955Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-03-26T21:27:13.220Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
