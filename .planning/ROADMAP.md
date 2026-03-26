@@ -12,7 +12,7 @@ BIA Summary is a linear CLI pipeline: read a Bodygram PDF, send it to Claude for
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Core Analysis Pipeline** - Project scaffolding, Claude multimodal integration, prompt loading, and dry-run markdown preview
+- [x] **Phase 1: Core Analysis Pipeline** - Project scaffolding, Claude multimodal integration, prompt loading, and dry-run markdown preview
 - [ ] **Phase 2: PDF Output Pipeline** - CloudConvert integration to produce the final client-facing PDF
 - [ ] **Phase 3: Robustness and Polish** - Retry logic, verbose logging, error messages, and prompt template variables
 
@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 Plans:
 - [x] 01-01-PLAN.md -- Scaffold project, install deps, TypeScript 6.0 config, shared types, env/prompt validation
 - [x] 01-02-PLAN.md -- Claude API client (PDF document block) and pipeline orchestrator with response validation
-- [ ] 01-03-PLAN.md -- CLI entry point (commander), end-to-end dry-run verification with sample PDF
+- [x] 01-03-PLAN.md -- CLI entry point (commander), end-to-end dry-run verification with sample PDF
 
 ### Phase 2: PDF Output Pipeline
 **Goal**: User receives a clean, client-ready PDF generated from the Claude markdown output via CloudConvert
@@ -70,6 +70,6 @@ Phases execute in numeric order: 1 -> 2 -> 3
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Core Analysis Pipeline | 0/3 | Not started | - |
+| 1. Core Analysis Pipeline | 3/3 | Complete | 2026-03-26 |
 | 2. PDF Output Pipeline | 0/1 | Not started | - |
 | 3. Robustness and Polish | 0/1 | Not started | - |
