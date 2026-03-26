@@ -31,7 +31,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md -- Scaffold project, install deps, TypeScript 6.0 config, shared types, env/prompt validation
+- [x] 01-01-PLAN.md -- Scaffold project, install deps, TypeScript 6.0 config, shared types, env/prompt validation
 - [ ] 01-02-PLAN.md -- Claude API client (PDF document block) and pipeline orchestrator with response validation
 - [ ] 01-03-PLAN.md -- CLI entry point (commander), end-to-end dry-run verification with sample PDF
 

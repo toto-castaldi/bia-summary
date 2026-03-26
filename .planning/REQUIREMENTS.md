@@ -14,7 +14,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **CLI-03**: User can use `--verbose` flag to see step-by-step progress logging
 - [ ] **CLI-04**: User can use `--output` / `-o` flag to specify custom output path
 - [ ] **CLI-05**: Tool displays clear, human-readable error messages for: missing file, missing API keys, API failures, invalid PDF
-- [ ] **CLI-06**: Tool exits with code 0 on success, non-zero on failure
+- [x] **CLI-06**: Tool exits with code 0 on success, non-zero on failure
 
 ### AI Analysis
 
@@ -31,7 +31,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **PDF-01**: Tool converts Claude's markdown output to PDF via CloudConvert API
 - [ ] **PDF-02**: Output PDF is saved with auto-generated filename: `YYYY_MM_DD - [Client Name] - Riassunto BIA.pdf`
-- [ ] **PDF-03**: API keys (ANTHROPIC_API_KEY, CLOUDCONVERT_API_KEY) are read from environment variables or `.env` file
+- [x] **PDF-03**: API keys (ANTHROPIC_API_KEY, CLOUDCONVERT_API_KEY) are read from environment variables or `.env` file
 - [ ] **PDF-04**: API calls retry with exponential backoff on transient errors (429, 500, 502, 503), max 3 retries
 
 ## v2 Requirements
@@ -71,7 +71,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLI-03 | Phase 3 | Pending |
 | CLI-04 | Phase 2 | Pending |
 | CLI-05 | Phase 3 | Pending |
-| CLI-06 | Phase 1 | Pending |
+| CLI-06 | Phase 1 | Complete |
 | AI-01 | Phase 1 | Pending |
 | AI-02 | Phase 1 | Pending |
 | AI-03 | Phase 1 | Pending |
@@ -82,7 +82,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AI-08 | Phase 3 | Pending |
 | PDF-01 | Phase 2 | Pending |
 | PDF-02 | Phase 2 | Pending |
-| PDF-03 | Phase 1 | Pending |
+| PDF-03 | Phase 1 | Complete |
 | PDF-04 | Phase 3 | Pending |
 
 **Coverage:**
