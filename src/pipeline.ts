@@ -1,6 +1,9 @@
 import { loadPrompt } from "./config.js";
 import { analyzePdf } from "./clients/claude.js";
-import type { PipelineOptions, AnalysisResult } from "./types.js";
+import { convertMarkdownToPdf } from "./clients/cloudconvert.js";
+import { generateOutputPath } from "./filename.js";
+import { writeFile } from "node:fs/promises";
+import type { PipelineOptions, AnalysisResult, AppConfig } from "./types.js";
 import ora from "ora";
 
 function validateResponse(result: AnalysisResult): void {
@@ -69,6 +72,7 @@ function validateResponse(result: AnalysisResult): void {
 
 export async function runPipeline(
   options: PipelineOptions,
+  config: AppConfig,
 ): Promise<AnalysisResult> {
   // Step 1: Start spinner (to stderr per D-05)
   const spinner = ora({
@@ -82,11 +86,40 @@ export async function runPipeline(
 
   // Step 3: Analyze PDF
   const result = await analyzePdf(options.inputPath, prompt);
-  spinner.succeed("Analysis complete");
 
   // Step 4: Validate response (D-09, D-10)
   validateResponse(result);
 
-  // Step 5: Return result
+  // Step 5: Convert to PDF if not dry-run
+  if (options.dryRun) {
+    spinner.succeed("Analysis complete");
+  } else {
+    const outputPath = generateOutputPath(
+      options.inputPath,
+      result.markdown,
+      options.outputPath,
+    );
+
+    spinner.text = "Converting to PDF via CloudConvert...";
+
+    try {
+      const pdfBuffer = await convertMarkdownToPdf(
+        result.markdown,
+        config.cloudConvertKey,
+      );
+      await writeFile(outputPath, pdfBuffer);
+      spinner.succeed(`PDF saved: ${outputPath}`);
+    } catch (error) {
+      // D-07: On CloudConvert failure, save markdown as fallback
+      const mdPath = outputPath.replace(/\.pdf$/i, ".md");
+      await writeFile(mdPath, result.markdown, "utf-8");
+      spinner.fail(
+        `PDF conversion failed: ${error instanceof Error ? error.message : String(error)}\n` +
+        `  Markdown saved as fallback: ${mdPath}`,
+      );
+    }
+  }
+
+  // Step 6: Return result
   return result;
 }

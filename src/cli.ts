@@ -12,10 +12,11 @@ program
   .version("0.1.0")
   .argument("<pdf-file>", "Path to the BIA report PDF")
   .option("--dry-run", "Preview markdown output without PDF conversion", false)
-  .action(async (pdfFile: string, options: { dryRun: boolean }) => {
+  .option("-o, --output <path>", "Custom output path for the generated PDF")
+  .action(async (pdfFile: string, options: { dryRun: boolean; output?: string }) => {
     try {
       // Step 1: Validate environment (D-07, D-08)
-      validateEnv();
+      const config = validateEnv();
 
       // Step 2: Validate PDF file exists
       const inputPath = path.resolve(pdfFile);
@@ -27,16 +28,25 @@ program
       }
 
       // Step 3: Run pipeline
-      const result = await runPipeline({ inputPath, dryRun: options.dryRun });
+      const result = await runPipeline(
+        {
+          inputPath,
+          dryRun: options.dryRun,
+          outputPath: options.output ? path.resolve(options.output) : undefined,
+        },
+        config,
+      );
 
       // Step 4: Output result (D-04, D-05)
-      // Metadata header to stderr
+      // Always show metadata to stderr
       console.error(
         `\nModel: ${result.model} | Tokens: ${result.inputTokens} in / ${result.outputTokens} out | Stop: ${result.stopReason}`,
       );
 
-      // Markdown to stdout (pipeable, D-05)
-      process.stdout.write(result.markdown);
+      // Markdown to stdout only in dry-run mode (D-05)
+      if (options.dryRun) {
+        process.stdout.write(result.markdown);
+      }
     } catch (error) {
       console.error(
         `Error: ${error instanceof Error ? error.message : String(error)}`,
