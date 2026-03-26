@@ -1,0 +1,61 @@
+# Project State
+
+## Project Reference
+
+See: .planning/PROJECT.md (updated 2026-03-26)
+
+**Core value:** Il cliente riceve un riassunto chiaro e leggibile della propria composizione corporea, senza dover interpretare il report tecnico originale.
+**Current focus:** Phase 1 - Core Analysis Pipeline
+
+## Current Position
+
+Phase: 1 of 3 (Core Analysis Pipeline)
+Plan: 0 of 2 in current phase
+Status: Ready to plan
+Last activity: 2026-03-26 -- Roadmap created
+
+Progress: [░░░░░░░░░░] 0%
+
+## Performance Metrics
+
+**Velocity:**
+- Total plans completed: 0
+- Average duration: -
+- Total execution time: 0 hours
+
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| - | - | - | - |
+
+**Recent Trend:**
+- Last 5 plans: -
+- Trend: -
+
+*Updated after each plan completion*
+
+## Accumulated Context
+
+### Decisions
+
+Decisions are logged in PROJECT.md Key Decisions table.
+Recent decisions affecting current work:
+
+- [Roadmap]: 3-phase structure -- Phase 1 delivers Claude analysis with dry-run, Phase 2 adds CloudConvert PDF output, Phase 3 adds robustness
+- [Roadmap]: Phase 1 is heavy (11 requirements) because the Claude integration IS the core value and cannot be partially shipped
+
+### Pending Todos
+
+None yet.
+
+### Blockers/Concerns
+
+- [Research]: Sex-specific BIA thresholds for goal table require professional's clinical input before prompt is finalized
+- [Research]: CloudConvert markdown table rendering quality unknown until tested with real BIA content -- may need to switch to HTML-to-PDF
+
+## Session Continuity
+
+Last session: 2026-03-26
+Stopped at: Roadmap created, ready to plan Phase 1
+Resume file: None

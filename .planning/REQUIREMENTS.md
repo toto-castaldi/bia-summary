@@ -66,30 +66,30 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CLI-01 | — | Pending |
-| CLI-02 | — | Pending |
-| CLI-03 | — | Pending |
-| CLI-04 | — | Pending |
-| CLI-05 | — | Pending |
-| CLI-06 | — | Pending |
-| AI-01 | — | Pending |
-| AI-02 | — | Pending |
-| AI-03 | — | Pending |
-| AI-04 | — | Pending |
-| AI-05 | — | Pending |
-| AI-06 | — | Pending |
-| AI-07 | — | Pending |
-| AI-08 | — | Pending |
-| PDF-01 | — | Pending |
-| PDF-02 | — | Pending |
-| PDF-03 | — | Pending |
-| PDF-04 | — | Pending |
+| CLI-01 | Phase 1 | Pending |
+| CLI-02 | Phase 1 | Pending |
+| CLI-03 | Phase 3 | Pending |
+| CLI-04 | Phase 2 | Pending |
+| CLI-05 | Phase 3 | Pending |
+| CLI-06 | Phase 1 | Pending |
+| AI-01 | Phase 1 | Pending |
+| AI-02 | Phase 1 | Pending |
+| AI-03 | Phase 1 | Pending |
+| AI-04 | Phase 1 | Pending |
+| AI-05 | Phase 1 | Pending |
+| AI-06 | Phase 1 | Pending |
+| AI-07 | Phase 1 | Pending |
+| AI-08 | Phase 3 | Pending |
+| PDF-01 | Phase 2 | Pending |
+| PDF-02 | Phase 2 | Pending |
+| PDF-03 | Phase 1 | Pending |
+| PDF-04 | Phase 3 | Pending |
 
 **Coverage:**
 - v1 requirements: 18 total
-- Mapped to phases: 0
-- Unmapped: 18
+- Mapped to phases: 18
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-26*
-*Last updated: 2026-03-26 after initial definition*
+*Last updated: 2026-03-26 after roadmap creation*
