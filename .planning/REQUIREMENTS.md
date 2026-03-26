@@ -18,13 +18,13 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### AI Analysis
 
-- [ ] **AI-01**: Tool sends the entire PDF to Claude API as a multimodal document block (base64)
-- [ ] **AI-02**: Tool loads the prompt from an external text file (default: `./prompt.txt`)
-- [ ] **AI-03**: Claude extracts body composition data: demographics (name, age, sex, weight, height, exam date), composition (FFM, FM in kg and %), metabolism (BMR, TDEE)
-- [ ] **AI-04**: Claude generates a goal table with sex-specific thresholds ("in forma" and "ottima definizione") as defined in the prompt
-- [ ] **AI-05**: Claude provides nutritional guidance based on extracted metabolism data
-- [ ] **AI-06**: Claude output excludes BMI and hydration data as instructed by the prompt
-- [ ] **AI-07**: Output is in Italian language
+- [x] **AI-01**: Tool sends the entire PDF to Claude API as a multimodal document block (base64)
+- [x] **AI-02**: Tool loads the prompt from an external text file (default: `./prompt.txt`)
+- [x] **AI-03**: Claude extracts body composition data: demographics (name, age, sex, weight, height, exam date), composition (FFM, FM in kg and %), metabolism (BMR, TDEE)
+- [x] **AI-04**: Claude generates a goal table with sex-specific thresholds ("in forma" and "ottima definizione") as defined in the prompt
+- [x] **AI-05**: Claude provides nutritional guidance based on extracted metabolism data
+- [x] **AI-06**: Claude output excludes BMI and hydration data as instructed by the prompt
+- [x] **AI-07**: Output is in Italian language
 - [ ] **AI-08**: Prompt supports template variables (e.g., `{{CLIENT_NAME}}`, `{{EXAM_DATE}}`) populated from report data or CLI args
 
 ### PDF Output
@@ -72,13 +72,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CLI-04 | Phase 2 | Pending |
 | CLI-05 | Phase 3 | Pending |
 | CLI-06 | Phase 1 | Complete |
-| AI-01 | Phase 1 | Pending |
-| AI-02 | Phase 1 | Pending |
-| AI-03 | Phase 1 | Pending |
-| AI-04 | Phase 1 | Pending |
-| AI-05 | Phase 1 | Pending |
-| AI-06 | Phase 1 | Pending |
-| AI-07 | Phase 1 | Pending |
+| AI-01 | Phase 1 | Complete |
+| AI-02 | Phase 1 | Complete |
+| AI-03 | Phase 1 | Complete |
+| AI-04 | Phase 1 | Complete |
+| AI-05 | Phase 1 | Complete |
+| AI-06 | Phase 1 | Complete |
+| AI-07 | Phase 1 | Complete |
 | AI-08 | Phase 3 | Pending |
 | PDF-01 | Phase 2 | Pending |
 | PDF-02 | Phase 2 | Pending |
