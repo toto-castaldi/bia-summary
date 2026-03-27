@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { readFile, access } from "node:fs/promises";
 import path from "node:path";
-import type { AppConfig } from "./types.js";
+import type { AppConfig, TemplateVars } from "./types.js";
 
 const envSchema = z.object({
   ANTHROPIC_API_KEY: z.string().min(1, "ANTHROPIC_API_KEY is required"),
@@ -24,7 +24,10 @@ export function validateEnv(): AppConfig {
   };
 }
 
-export async function loadPrompt(pdfPath: string): Promise<string> {
+export async function loadPrompt(
+  pdfPath: string,
+  templateVars?: TemplateVars,
+): Promise<string> {
   const resolvedPdfPath = path.resolve(pdfPath);
   const promptPath = path.join(path.dirname(resolvedPdfPath), "prompt.txt");
 
@@ -39,5 +42,15 @@ export async function loadPrompt(pdfPath: string): Promise<string> {
     process.exit(1);
   }
 
-  return readFile(promptPath, "utf-8");
+  let content = await readFile(promptPath, "utf-8");
+
+  if (templateVars?.clientName) {
+    content = content.replaceAll("{{CLIENT_NAME}}", templateVars.clientName);
+  }
+  if (templateVars?.examDate) {
+    const [y, m, d] = templateVars.examDate.split("_");
+    content = content.replaceAll("{{EXAM_DATE}}", `${d}/${m}/${y}`);
+  }
+
+  return content;
 }

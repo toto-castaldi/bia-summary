@@ -1,4 +1,5 @@
 import CloudConvert from "cloudconvert";
+import { withRetry } from "../retry.js";
 
 /**
  * Convert a markdown string to PDF via the CloudConvert API.
@@ -14,31 +15,39 @@ import CloudConvert from "cloudconvert";
 export async function convertMarkdownToPdf(
   markdown: string,
   apiKey: string,
+  onRetry?: (attempt: number, delayMs: number, error: unknown) => void,
 ): Promise<Buffer> {
   const cloudConvert = new CloudConvert(apiKey);
 
   // Step 1: Create job with import/raw + convert + export/url pipeline
-  const job = await cloudConvert.jobs.create({
-    tasks: {
-      "import-md": {
-        operation: "import/raw",
-        file: markdown,
-        filename: "summary.md",
-      },
-      "convert-to-pdf": {
-        operation: "convert",
-        input: ["import-md"],
-        output_format: "pdf",
-      },
-      "export-pdf": {
-        operation: "export/url",
-        input: ["convert-to-pdf"],
-      },
-    },
-  });
+  const job = await withRetry(
+    () =>
+      cloudConvert.jobs.create({
+        tasks: {
+          "import-md": {
+            operation: "import/raw",
+            file: markdown,
+            filename: "summary.md",
+          },
+          "convert-to-pdf": {
+            operation: "convert",
+            input: ["import-md"],
+            output_format: "pdf",
+          },
+          "export-pdf": {
+            operation: "export/url",
+            input: ["convert-to-pdf"],
+          },
+        },
+      }),
+    { onRetry },
+  );
 
   // Step 2: Wait for completion (SDK handles polling internally)
-  const completed = await cloudConvert.jobs.wait(job.id);
+  const completed = await withRetry(
+    () => cloudConvert.jobs.wait(job.id),
+    { onRetry },
+  );
 
   // Step 3: Get export URLs
   const exportUrls = cloudConvert.jobs.getExportUrls(completed);
