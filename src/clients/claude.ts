@@ -9,7 +9,7 @@ export async function analyzePdf(
   const pdfBuffer = await readFile(pdfPath);
   const pdfBase64 = pdfBuffer.toString("base64");
 
-  const client = new Anthropic();
+  const client = new Anthropic({ maxRetries: 3 });
 
   const response = await client.messages.create({
     model: "claude-sonnet-4-20250514",

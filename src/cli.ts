@@ -32,6 +32,7 @@ program
         {
           inputPath,
           dryRun: options.dryRun,
+          verbose: false,
           outputPath: options.output ? path.resolve(options.output) : undefined,
         },
         config,

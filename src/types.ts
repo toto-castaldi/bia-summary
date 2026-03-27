@@ -6,7 +6,13 @@ export interface AppConfig {
 export interface PipelineOptions {
   inputPath: string;
   dryRun: boolean;
+  verbose: boolean;
   outputPath?: string;
+}
+
+export interface TemplateVars {
+  clientName?: string;
+  examDate?: string; // YYYY_MM_DD format from parseInputFilename
 }
 
 export interface ParsedFilename {
