@@ -21,9 +21,14 @@ Il cliente riceve un riassunto chiaro e leggibile della propria composizione cor
 - ✓ L'output di Claude (markdown) viene convertito in PDF tramite CloudConvert API — Phase 2
 - ✓ Il PDF generato è semplice e pulito: testo ben formattato, titoli, tabelle — Phase 2
 
+- ✓ Retry con backoff esponenziale per errori API transitori — Phase 3
+- ✓ Flag --verbose per logging step-by-step — Phase 3
+- ✓ Messaggi di errore chiari per tutti i tipi di fallimento — Phase 3
+- ✓ Template variables nel prompt ({{CLIENT_NAME}}, {{EXAM_DATE}}) — Phase 3
+
 ### Active
 
-(All core requirements validated — Phase 3 adds robustness: retry, verbose, errors, template vars)
+(All v1 requirements validated — milestone complete)
 
 ### Out of Scope
 
@@ -76,4 +81,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-27 after Phase 2 completion*
+*Last updated: 2026-03-27 after Phase 3 completion — all v1 requirements validated*
