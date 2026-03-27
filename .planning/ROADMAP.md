@@ -59,10 +59,11 @@ Plans:
   2. Tool displays clear, human-readable error messages for missing file, missing API keys, API failures, and invalid PDF inputs
   3. Transient API errors (429, 500, 502, 503) are retried with exponential backoff up to 3 times before failing
   4. Prompt supports template variables (e.g., `{{CLIENT_NAME}}`, `{{EXAM_DATE}}`) that are populated from report data or CLI arguments
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md -- Retry logic (Anthropic maxRetries + CloudConvert withRetry wrapper), template variable replacement in loadPrompt, extended types
+- [ ] 03-02-PLAN.md -- --verbose CLI flag, verbose pipeline logging, improved error messages for all API failure modes
 
 ## Progress
 
@@ -73,4 +74,4 @@ Phases execute in numeric order: 1 -> 2 -> 3
 |-------|----------------|--------|-----------|
 | 1. Core Analysis Pipeline | 3/3 | Complete | 2026-03-26 |
 | 2. PDF Output Pipeline | 0/2 | Not started | - |
-| 3. Robustness and Polish | 0/1 | Not started | - |
+| 3. Robustness and Polish | 0/2 | Not started | - |
