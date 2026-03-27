@@ -13,7 +13,8 @@ program
   .argument("<pdf-file>", "Path to the BIA report PDF")
   .option("--dry-run", "Preview markdown output without PDF conversion", false)
   .option("-o, --output <path>", "Custom output path for the generated PDF")
-  .action(async (pdfFile: string, options: { dryRun: boolean; output?: string }) => {
+  .option("--verbose", "Show step-by-step progress logging", false)
+  .action(async (pdfFile: string, options: { dryRun: boolean; output?: string; verbose: boolean }) => {
     try {
       // Step 1: Validate environment (D-07, D-08)
       const config = validateEnv();
@@ -32,7 +33,7 @@ program
         {
           inputPath,
           dryRun: options.dryRun,
-          verbose: false,
+          verbose: options.verbose,
           outputPath: options.output ? path.resolve(options.output) : undefined,
         },
         config,
@@ -49,9 +50,13 @@ program
         process.stdout.write(result.markdown);
       }
     } catch (error) {
-      console.error(
-        `Error: ${error instanceof Error ? error.message : String(error)}`,
-      );
+      // Pipeline spinner.fail already displayed user-friendly message for API errors.
+      // Show error here for non-pipeline failures (file access, etc.)
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`Error: ${message}`);
+      if (options.verbose && error instanceof Error && error.stack) {
+        console.error(error.stack);
+      }
       process.exit(1);
     }
   });
