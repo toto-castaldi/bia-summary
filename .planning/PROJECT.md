@@ -18,10 +18,12 @@ Il cliente riceve un riassunto chiaro e leggibile della propria composizione cor
 - ✓ Il tool gestisce dati anagrafici del cliente (nome, età, sesso, peso, altezza, data esame) — Phase 1
 - ✓ Il tool gestisce i dati di composizione corporea (massa grassa/magra in kg e %, BMR, TDEE) — Phase 1
 
+- ✓ L'output di Claude (markdown) viene convertito in PDF tramite CloudConvert API — Phase 2
+- ✓ Il PDF generato è semplice e pulito: testo ben formattato, titoli, tabelle — Phase 2
+
 ### Active
 
-- [ ] L'output di Claude (markdown) viene convertito in PDF tramite CloudConvert API
-- [ ] Il PDF generato è semplice e pulito: testo ben formattato, titoli, tabelle
+(All core requirements validated — Phase 3 adds robustness: retry, verbose, errors, template vars)
 
 ### Out of Scope
 
@@ -74,4 +76,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-26 after Phase 1 completion*
+*Last updated: 2026-03-27 after Phase 2 completion*
