@@ -25,14 +25,14 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **AI-05**: Claude provides nutritional guidance based on extracted metabolism data
 - [x] **AI-06**: Claude output excludes BMI and hydration data as instructed by the prompt
 - [x] **AI-07**: Output is in Italian language
-- [ ] **AI-08**: Prompt supports template variables (e.g., `{{CLIENT_NAME}}`, `{{EXAM_DATE}}`) populated from report data or CLI args
+- [x] **AI-08**: Prompt supports template variables (e.g., `{{CLIENT_NAME}}`, `{{EXAM_DATE}}`) populated from report data or CLI args
 
 ### PDF Output
 
 - [x] **PDF-01**: Tool converts Claude's markdown output to PDF via CloudConvert API
 - [x] **PDF-02**: Output PDF is saved with auto-generated filename: `YYYY_MM_DD - [Client Name] - Riassunto BIA.pdf`
 - [x] **PDF-03**: API keys (ANTHROPIC_API_KEY, CLOUDCONVERT_API_KEY) are read from environment variables or `.env` file
-- [ ] **PDF-04**: API calls retry with exponential backoff on transient errors (429, 500, 502, 503), max 3 retries
+- [x] **PDF-04**: API calls retry with exponential backoff on transient errors (429, 500, 502, 503), max 3 retries
 
 ## v2 Requirements
 
@@ -79,11 +79,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | AI-05 | Phase 1 | Complete |
 | AI-06 | Phase 1 | Complete |
 | AI-07 | Phase 1 | Complete |
-| AI-08 | Phase 3 | Pending |
+| AI-08 | Phase 3 | Complete |
 | PDF-01 | Phase 2 | Complete |
 | PDF-02 | Phase 2 | Complete |
 | PDF-03 | Phase 1 | Complete |
-| PDF-04 | Phase 3 | Pending |
+| PDF-04 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 18 total

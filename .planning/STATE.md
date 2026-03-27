@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Phase 3 context gathered
-last_updated: "2026-03-27T05:57:17.050Z"
+status: executing
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-03-27T06:36:43.529Z"
 last_activity: 2026-03-27
 progress:
   total_phases: 3
   completed_phases: 2
-  total_plans: 5
-  completed_plans: 5
+  total_plans: 7
+  completed_plans: 6
   percent: 0
 ---
 
@@ -21,13 +21,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-26)
 
 **Core value:** Il cliente riceve un riassunto chiaro e leggibile della propria composizione corporea, senza dover interpretare il report tecnico originale.
-**Current focus:** Phase 02 — pdf-output-pipeline
+**Current focus:** Phase 03 — robustness-and-polish
 
 ## Current Position
 
-Phase: 3
-Plan: Not started
-Status: Phase complete — ready for verification
+Phase: 03 (robustness-and-polish) — EXECUTING
+Plan: 2 of 2
+Status: Ready to execute
 Last activity: 2026-03-27
 
 Progress: [░░░░░░░░░░] 0%
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P03 | 2min | 2 tasks | 1 files |
 | Phase 02 P01 | 4min | 2 tasks | 5 files |
 | Phase 02 P02 | 3min | 2 tasks | 2 files |
+| Phase 03 P01 | 14min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,9 @@ Recent decisions affecting current work:
 - [Phase 02]: Used import/raw for inline markdown embedding in CloudConvert jobs (no stream handling)
 - [Phase 02]: Filename resolution: input filename parse (primary) -> markdown extraction (fallback) -> generic date (last resort) per D-02
 - [Phase 02]: Pipeline function takes config: AppConfig as second param; metadata to stderr, markdown to stdout only in dry-run; .md fallback on CloudConvert failure (D-07)
+- [Phase 03]: Use Anthropic SDK maxRetries: 3 instead of custom wrapper to avoid double-retry pitfall
+- [Phase 03]: withRetry checks error.cause instanceof Response for CloudConvert SDK error structure (ES2022 cause)
+- [Phase 03]: Template variable {{EXAM_DATE}} converts YYYY_MM_DD to DD/MM/YYYY for Italian convention
 
 ### Pending Todos
 
@@ -88,6 +92,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-27T05:57:17.043Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-robustness-and-polish/03-CONTEXT.md
+Last session: 2026-03-27T06:36:43.523Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: None
