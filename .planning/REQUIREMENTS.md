@@ -11,9 +11,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **CLI-01**: User can run `bia-summary <file.pdf>` to process a single BIA report
 - [x] **CLI-02**: User can use `--dry-run` flag to preview markdown output without PDF conversion
-- [ ] **CLI-03**: User can use `--verbose` flag to see step-by-step progress logging
+- [x] **CLI-03**: User can use `--verbose` flag to see step-by-step progress logging
 - [x] **CLI-04**: User can use `--output` / `-o` flag to specify custom output path
-- [ ] **CLI-05**: Tool displays clear, human-readable error messages for: missing file, missing API keys, API failures, invalid PDF
+- [x] **CLI-05**: Tool displays clear, human-readable error messages for: missing file, missing API keys, API failures, invalid PDF
 - [x] **CLI-06**: Tool exits with code 0 on success, non-zero on failure
 
 ### AI Analysis
@@ -68,9 +68,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | CLI-01 | Phase 1 | Complete |
 | CLI-02 | Phase 1 | Complete |
-| CLI-03 | Phase 3 | Pending |
+| CLI-03 | Phase 3 | Complete |
 | CLI-04 | Phase 2 | Complete |
-| CLI-05 | Phase 3 | Pending |
+| CLI-05 | Phase 3 | Complete |
 | CLI-06 | Phase 1 | Complete |
 | AI-01 | Phase 1 | Complete |
 | AI-02 | Phase 1 | Complete |

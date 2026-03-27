@@ -63,7 +63,7 @@ Plans:
 
 Plans:
 - [x] 03-01-PLAN.md -- Retry logic (Anthropic maxRetries + CloudConvert withRetry wrapper), template variable replacement in loadPrompt, extended types
-- [ ] 03-02-PLAN.md -- --verbose CLI flag, verbose pipeline logging, improved error messages for all API failure modes
+- [x] 03-02-PLAN.md -- --verbose CLI flag, verbose pipeline logging, improved error messages for all API failure modes
 
 ## Progress
 
