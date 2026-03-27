@@ -1,10 +1,41 @@
 import { loadPrompt } from "./config.js";
 import { analyzePdf } from "./clients/claude.js";
 import { convertMarkdownToPdf } from "./clients/cloudconvert.js";
-import { generateOutputPath } from "./filename.js";
-import { writeFile } from "node:fs/promises";
+import { generateOutputPath, parseInputFilename } from "./filename.js";
+import { writeFile, stat } from "node:fs/promises";
+import path from "node:path";
+import Anthropic from "@anthropic-ai/sdk";
 import type { PipelineOptions, AnalysisResult, AppConfig } from "./types.js";
 import ora from "ora";
+
+function verboseLog(verbose: boolean, message: string): void {
+  if (verbose) {
+    const timestamp = new Date().toISOString().slice(11, 23); // HH:mm:ss.SSS
+    console.error(`[${timestamp}] ${message}`);
+  }
+}
+
+function formatApiError(error: unknown): string {
+  if (error instanceof Anthropic.AuthenticationError) {
+    return "Invalid ANTHROPIC_API_KEY. Check your .env file or environment variables.";
+  }
+  if (error instanceof Anthropic.RateLimitError) {
+    return "Claude API rate limit exceeded. All retry attempts failed. Try again in a few minutes.";
+  }
+  if (error instanceof Anthropic.APIConnectionError) {
+    return "Cannot connect to Claude API. Check your internet connection.";
+  }
+  if (error instanceof Anthropic.InternalServerError) {
+    return "Claude API is experiencing issues. All retry attempts failed. Try again later.";
+  }
+  if (error instanceof Anthropic.APIError) {
+    return `Claude API error (${error.status}): ${error.message}`;
+  }
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return String(error);
+}
 
 function validateResponse(result: AnalysisResult): void {
   // Truncation check (D-10)
@@ -80,12 +111,36 @@ export async function runPipeline(
     stream: process.stderr,
   }).start();
 
-  // Step 2: Load prompt from PDF's directory (D-01)
-  const prompt = await loadPrompt(options.inputPath);
+  verboseLog(options.verbose, `Input PDF: ${options.inputPath}`);
+  const fileStat = await stat(options.inputPath);
+  verboseLog(options.verbose, `File size: ${(fileStat.size / 1024).toFixed(1)} KB`);
+
+  // Step 2: Extract template vars from filename and load prompt (D-01)
+  const inputBasename = path.basename(options.inputPath);
+  const parsed = parseInputFilename(inputBasename);
+  const templateVars = parsed ? { clientName: parsed.clientName, examDate: parsed.date } : undefined;
+  if (parsed) {
+    verboseLog(options.verbose, `Parsed filename: client="${parsed.clientName}", date="${parsed.date}"`);
+  } else {
+    verboseLog(options.verbose, `Could not parse filename "${inputBasename}" -- template variables will not be replaced`);
+  }
+
+  const prompt = await loadPrompt(options.inputPath, templateVars);
+  verboseLog(options.verbose, `Prompt loaded (${prompt.length} chars)`);
   spinner.text = "Analyzing BIA report with Claude...";
 
   // Step 3: Analyze PDF
-  const result = await analyzePdf(options.inputPath, prompt);
+  verboseLog(options.verbose, "Sending PDF to Claude (model: claude-sonnet-4-20250514, max_tokens: 8192)...");
+  let result: AnalysisResult;
+  try {
+    result = await analyzePdf(options.inputPath, prompt);
+  } catch (error) {
+    spinner.fail(formatApiError(error));
+    throw error;
+  }
+
+  verboseLog(options.verbose, `Claude response: ${result.inputTokens} input / ${result.outputTokens} output tokens`);
+  verboseLog(options.verbose, `Stop reason: ${result.stopReason}`);
 
   // Step 4: Validate response (D-09, D-10)
   validateResponse(result);
@@ -102,15 +157,23 @@ export async function runPipeline(
 
     spinner.text = "Converting to PDF via CloudConvert...";
 
+    const onRetry = (attempt: number, delayMs: number, _error: unknown) => {
+      spinner.text = `CloudConvert: retrying (attempt ${attempt + 1}/3, waiting ${(delayMs / 1000).toFixed(1)}s)...`;
+    };
+    verboseLog(options.verbose, "Converting markdown to PDF via CloudConvert...");
+
     try {
       const pdfBuffer = await convertMarkdownToPdf(
         result.markdown,
         config.cloudConvertKey,
+        onRetry,
       );
       await writeFile(outputPath, pdfBuffer);
       spinner.succeed(`PDF saved: ${outputPath}`);
+      verboseLog(options.verbose, `PDF saved: ${outputPath}`);
     } catch (error) {
       // D-07: On CloudConvert failure, save markdown as fallback
+      verboseLog(options.verbose, `CloudConvert error: ${error instanceof Error ? error.message : String(error)}`);
       const mdPath = outputPath.replace(/\.pdf$/i, ".md");
       await writeFile(mdPath, result.markdown, "utf-8");
       spinner.fail(
