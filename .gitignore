@@ -21,8 +21,9 @@ build/
 *.swp
 *.swo
 
-# Pi agent local config
-.pi/
+# Pi agent local config (keep extensions, ignore sessions)
+.pi/sessions/
+.pi/*.jsonl
 
 # Output files
 *_riassunto.pdf
