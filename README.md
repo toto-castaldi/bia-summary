@@ -1,7 +1,7 @@
 BIA Summary
 ===========
 
-Skill per [pi](https://pi.dev/) che genera riassunti PDF professionali da report di analisi corporea BIA Akern (Bodygram).
+Skill ed estensione per [pi](https://pi.dev/) che genera riassunti PDF professionali da report di analisi corporea BIA Akern (Bodygram).
 
 ## 🎯 Cosa Fa
 
@@ -51,6 +51,9 @@ python3 -m venv .venv
 
 # Metodo 2: Linguaggio naturale
 "Crea il riassunto BIA per /percorso/al/report_bia.pdf"
+
+# Metodo 3: Monitoraggio automatico (vedi sezione Estensione)
+/bia-watch ~/BIA-Reports
 ```
 
 ### Output
@@ -62,11 +65,43 @@ Il PDF viene salvato nella stessa cartella del file originale:
 /cartella/report_bia_riassunto.pdf # Output generato
 ```
 
+## 👁️ Estensione BIA Watcher
+
+L'estensione `bia-watcher` monitora automaticamente una cartella per nuovi report BIA e li elabora senza intervento manuale.
+
+### Comandi
+
+| Comando | Descrizione |
+|---------|-------------|
+| `/bia-watch [cartella]` | Imposta la cartella da monitorare (default: `~/BIA-Reports`) |
+| `/bia-scan` | Scansiona manualmente e mostra i file da elaborare |
+| `/bia-status` | Mostra stato del watcher (file totali, elaborati, in coda) |
+| `/bia-reset` | Resetta la lista dei file già elaborati |
+
+### Funzionamento
+
+1. All'avvio di pi, l'estensione inizia a monitorare la cartella configurata
+2. Quando viene rilevato un nuovo PDF (che non è già un `_riassunto`):
+   - Notifica l'utente
+   - Invoca automaticamente la skill bia-summary
+   - Genera il riassunto nella stessa cartella
+3. I file elaborati vengono tracciati per evitare duplicazioni
+
+```
+~/BIA-Reports/
+├── cliente_rossi.pdf           # ← Nuovo file rilevato
+├── cliente_rossi_riassunto.pdf # ← Generato automaticamente
+├── cliente_bianchi.pdf
+└── cliente_bianchi_riassunto.pdf
+```
+
 ## 📁 Struttura
 
 ```
 bia-summary/
 ├── README.md
+├── .pi/extensions/
+│   └── bia-watcher.ts        # Estensione monitoraggio automatico
 └── .agents/skills/bia-summary/
     ├── SKILL.md              # Istruzioni per l'agente AI
     ├── requirements.txt      # Dipendenze Python
